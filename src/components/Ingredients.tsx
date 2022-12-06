@@ -257,6 +257,44 @@ const Ingredients: React.FC = () => {
     }
   };
 
+  const resetIngredients = () => {
+    setSelectedIngredients([]);
+    setSelectedSeasonings([]);
+    setFlavorsValue({ Sweet: 0, Sour: 0, Bitter: 0, Salty: 0, Hot: 0 });
+    setEffectsValue({
+      Catching: 0,
+      Egg: 0,
+      Encounter: 0,
+      Exp: 0,
+      Humungo: 0,
+      Item: 0,
+      Raid: 0,
+      Sparkling: 0,
+      Teensy: 0,
+      Title: 0,
+    });
+    setTypesValue({
+      Normal: 0,
+      Fire: 0,
+      Water: 0,
+      Grass: 0,
+      Electric: 0,
+      Ice: 0,
+      Fighting: 0,
+      Poison: 0,
+      Ground: 0,
+      Flying: 0,
+      Psychic: 0,
+      Bug: 0,
+      Rock: 0,
+      Ghost: 0,
+      Dark: 0,
+      Steel: 0,
+      Dragon: 0,
+      Fairy: 0,
+    });
+  };
+
   return (
     <Box>
       <Heading mb='5'>Select up to 6 ingredients:</Heading>
@@ -379,8 +417,11 @@ const Ingredients: React.FC = () => {
       </Box>
 
       <Box>
-        <Button onClick={applyBonusEffect}>
+        <Button onClick={applyBonusEffect} mr='2'>
           <Text color='black'>Calculate</Text>
+        </Button>
+        <Button onClick={resetIngredients}>
+          <Text color='black'>Reset</Text>
         </Button>
       </Box>
     </Box>
