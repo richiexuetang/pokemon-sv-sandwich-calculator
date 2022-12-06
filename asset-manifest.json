@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/pokemon-sv-sandwich-calculator/static/css/main.073c9b0a.css",
-    "main.js": "/pokemon-sv-sandwich-calculator/static/js/main.17123df1.js",
+    "main.js": "/pokemon-sv-sandwich-calculator/static/js/main.3adad648.js",
     "static/js/787.0f1f19d3.chunk.js": "/pokemon-sv-sandwich-calculator/static/js/787.0f1f19d3.chunk.js",
     "index.html": "/pokemon-sv-sandwich-calculator/index.html",
     "main.073c9b0a.css.map": "/pokemon-sv-sandwich-calculator/static/css/main.073c9b0a.css.map",
-    "main.17123df1.js.map": "/pokemon-sv-sandwich-calculator/static/js/main.17123df1.js.map",
+    "main.3adad648.js.map": "/pokemon-sv-sandwich-calculator/static/js/main.3adad648.js.map",
     "787.0f1f19d3.chunk.js.map": "/pokemon-sv-sandwich-calculator/static/js/787.0f1f19d3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.17123df1.js"
+    "static/js/main.3adad648.js"
   ]
 }
