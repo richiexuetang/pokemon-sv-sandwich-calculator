@@ -8,10 +8,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
-import {
-  ingredietAttributes,
-  seasoningAttributes,
-} from '../data/ingredientAttributes';
+import { ingredietAttributes } from '../data/ingredientAttributes';
 import {
   EffectInterface,
   FlavorInterface,
@@ -65,10 +62,19 @@ const Ingredients: React.FC = () => {
   });
 
   const handleIngredientClick = (name: string) => {
-    if (selectedIngredients.includes(name)) {
-      setSelectedIngredients(
-        selectedIngredients.filter((item) => item !== name),
-      );
+    if (
+      selectedIngredients.includes(name) ||
+      selectedSeasonings.includes(name)
+    ) {
+      if (ingredientsList.includes(name)) {
+        setSelectedIngredients(
+          selectedIngredients.filter((item) => item !== name),
+        );
+      } else {
+        setSelectedSeasonings(
+          selectedSeasonings.filter((item) => item !== name),
+        );
+      }
 
       const updatedEffects: EffectInterface = {};
       const updatedFlavors: FlavorInterface = {};
@@ -103,8 +109,17 @@ const Ingredients: React.FC = () => {
 
         setTypesValue({ ...typesValue, ...updatedTypes });
       });
-    } else if (selectedIngredients && selectedIngredients.length <= 6) {
-      setSelectedIngredients([...selectedIngredients, name]);
+    } else if (
+      selectedIngredients &&
+      ((selectedIngredients.length <= 6 && ingredientsList.includes(name)) ||
+        (selectedIngredients.length <= 4 && seasoningsList.includes(name)))
+    ) {
+      if (ingredientsList.includes(name)) {
+        setSelectedIngredients([...selectedIngredients, name]);
+      } else {
+        setSelectedSeasonings([...selectedSeasonings, name]);
+      }
+
       const updatedEffects: EffectInterface = {};
       const updatedFlavors: FlavorInterface = {};
       const updatedTypes: TypeInterface = {};
@@ -141,79 +156,104 @@ const Ingredients: React.FC = () => {
     }
   };
 
-  const handleSeasoningClick = (name: string) => {
-    if (selectedSeasonings.includes(name)) {
-      setSelectedSeasonings(selectedSeasonings.filter((item) => item !== name));
+  const applyBonusEffect = () => {
+    // get top 2 flavor
+    const sortedFlavor: any[] = [];
+    Object.keys(flavorsValue).map((flavor) => {
+      sortedFlavor.push([
+        flavor,
+        flavorsValue[flavor as keyof FlavorInterface],
+      ]);
+    });
+    // eslint-disable-next-line func-names
+    sortedFlavor.sort(function (a, b) {
+      return b[1] - a[1];
+    });
 
-      const updatedEffects: EffectInterface = {};
-      const updatedFlavors: FlavorInterface = {};
-      const updatedTypes: TypeInterface = {};
+    const flavorOne = sortedFlavor[0][0];
+    const flavorTwo = sortedFlavor[1][0];
 
-      const attribute = seasoningAttributes[name.replaceAll(' ', '')];
-      const { Effects, Flavors, Types } = attribute;
+    if (
+      ['Sweet', 'Sour'].includes(flavorOne) &&
+      ['Sweet', 'Sour'].includes(flavorTwo)
+    ) {
+      // Boost Catching Power
+      const updatedEffects: EffectInterface = { Catching: 100 };
+      const preVal = effectsValue.Catching || 0;
+      if (updatedEffects?.Catching) {
+        updatedEffects.Catching += preVal;
+      }
 
-      Object.keys(Effects).map((effect) => {
-        const subVal = Effects[effect as keyof EffectInterface] || 0;
-        const preVal = effectsValue[effect as keyof EffectInterface] || 0;
+      setEffectsValue({ ...effectsValue, ...updatedEffects });
+    }
 
-        updatedEffects[effect as keyof EffectInterface] = preVal - subVal;
+    if (
+      ['Salty', 'Bitter'].includes(flavorOne) &&
+      ['Salty', 'Bitter'].includes(flavorTwo)
+    ) {
+      // Boost Exp Power
+      const updatedEffects: EffectInterface = { Exp: 100 };
+      if (updatedEffects?.Exp) {
+        updatedEffects.Exp += effectsValue.Exp || 0;
+      }
+      setEffectsValue({ ...effectsValue, ...updatedEffects });
+    }
 
-        setEffectsValue({ ...effectsValue, ...updatedEffects });
-      });
+    if (
+      ['Spicy', 'Sweet'].includes(flavorOne) &&
+      ['Spicy', 'Sweet'].includes(flavorTwo)
+    ) {
+      // Boost Raid Power
+      const updatedEffects: EffectInterface = { Raid: 100 };
+      if (updatedEffects?.Raid) {
+        updatedEffects.Raid += effectsValue.Raid || 0;
+      }
+      setEffectsValue({ ...effectsValue, ...updatedEffects });
+    }
 
-      Object.keys(Flavors).map((flavor) => {
-        const subVal = Flavors[flavor as keyof FlavorInterface] || 0;
-        const preVal = flavorsValue[flavor as keyof FlavorInterface] || 0;
+    if (flavorOne === 'Sweet') {
+      // Egg Power
+      const updatedEffects: EffectInterface = { Egg: 100 };
+      if (updatedEffects?.Egg) {
+        updatedEffects.Egg += effectsValue.Egg || 0;
+      }
+      setEffectsValue({ ...effectsValue, ...updatedEffects });
+    }
 
-        updatedFlavors[flavor as keyof FlavorInterface] = preVal - subVal;
+    if (flavorOne === 'Spicy') {
+      // Humungo Power
+      const updatedEffects: EffectInterface = { Humungo: 100 };
+      if (updatedEffects?.Humungo) {
+        updatedEffects.Humungo += effectsValue.Humungo || 0;
+      }
+      setEffectsValue({ ...effectsValue, ...updatedEffects });
+    }
 
-        setFlavorsValue({ ...flavorsValue, ...updatedFlavors });
-      });
+    if (flavorOne === 'Bitter') {
+      // Item Power
+      const updatedEffects: EffectInterface = { Item: 100 };
+      if (updatedEffects?.Item) {
+        updatedEffects.Item += effectsValue.Item || 0;
+      }
+      setEffectsValue({ ...effectsValue, ...updatedEffects });
+    }
 
-      Object.keys(Types).map((type) => {
-        const subVal = Types[type as keyof TypeInterface] || 0;
-        const preVal = typesValue[type as keyof TypeInterface] || 0;
+    if (flavorOne === 'Sour') {
+      // Teensy Power
+      const updatedEffects: EffectInterface = { Teensy: 100 };
+      if (updatedEffects?.Teensy) {
+        updatedEffects.Teensy += effectsValue.Teensy || 0;
+      }
+      setEffectsValue({ ...effectsValue, ...updatedEffects });
+    }
 
-        updatedTypes[type as keyof TypeInterface] = preVal - subVal;
-
-        setTypesValue({ ...typesValue, ...updatedTypes });
-      });
-    } else if (selectedSeasonings && selectedSeasonings.length <= 4) {
-      setSelectedSeasonings([...selectedSeasonings, name]);
-
-      const updatedEffects: EffectInterface = {};
-      const updatedFlavors: FlavorInterface = {};
-      const updatedTypes: TypeInterface = {};
-
-      const attribute = seasoningAttributes[name.replaceAll(' ', '')];
-      const { Effects, Flavors, Types } = attribute;
-
-      Object.keys(Effects).map((effect) => {
-        const addVal = Effects[effect as keyof EffectInterface] || 0;
-        const preVal = effectsValue[effect as keyof EffectInterface] || 0;
-
-        updatedEffects[effect as keyof EffectInterface] = preVal + addVal;
-
-        setEffectsValue({ ...effectsValue, ...updatedEffects });
-      });
-
-      Object.keys(Flavors).map((flavor) => {
-        const addVal = Flavors[flavor as keyof FlavorInterface] || 0;
-        const preVal = flavorsValue[flavor as keyof FlavorInterface] || 0;
-
-        updatedFlavors[flavor as keyof FlavorInterface] = preVal + addVal;
-
-        setFlavorsValue({ ...flavorsValue, ...updatedFlavors });
-      });
-
-      Object.keys(Types).map((type) => {
-        const addVal = Types[type as keyof TypeInterface] || 0;
-        const preVal = typesValue[type as keyof TypeInterface] || 0;
-
-        updatedTypes[type as keyof TypeInterface] = preVal + addVal;
-
-        setTypesValue({ ...typesValue, ...updatedTypes });
-      });
+    if (flavorOne === 'Salty') {
+      // Encounter Power
+      const updatedEffects: EffectInterface = { Encounter: 100 };
+      if (updatedEffects?.Encounter) {
+        updatedEffects.Encounter += effectsValue.Encounter || 0;
+      }
+      setEffectsValue({ ...effectsValue, ...updatedEffects });
     }
   };
 
@@ -265,7 +305,7 @@ const Ingredients: React.FC = () => {
         >
           {seasoningsList.map((name) => (
             <Box key={name} my='2' ml='0 !important'>
-              <Button onClick={() => handleSeasoningClick(name)}>
+              <Button onClick={() => handleIngredientClick(name)}>
                 <Text color='black'>{name}</Text>
                 <Image
                   src={`https://www.serebii.net/itemdex/sprites/${name
@@ -336,6 +376,12 @@ const Ingredients: React.FC = () => {
             </Grid>
           )}
         </Box>
+      </Box>
+
+      <Box>
+        <Button onClick={applyBonusEffect}>
+          <Text color='black'>Calculate</Text>
+        </Button>
       </Box>
     </Box>
   );

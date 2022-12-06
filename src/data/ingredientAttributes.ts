@@ -615,6 +615,460 @@ export const ingredietAttributes: Ingredient = {
       Electric: 6,
     },
   },
+  Butter: {
+    Flavors: {
+      Sweet: 12,
+      Salty: 12,
+    },
+    Effects: {
+      Egg: -3,
+      Exp: 12,
+      Raid: 21,
+    },
+    Types: {
+      Bug: 2,
+      Ghost: 2,
+    },
+  },
+  ChiliSauce: {
+    Flavors: {
+      Sweet: 8,
+      Salty: 12,
+      Sour: 8,
+      Hot: 20,
+    },
+    Effects: {
+      Egg: -3,
+      Exp: 12,
+      Raid: 21,
+    },
+    Types: {
+      Water: 2,
+      Grass: 2,
+    },
+  },
+  CreamCheese: {
+    Flavors: {
+      Sweet: 12,
+      Salty: 12,
+      Sour: 12,
+    },
+    Effects: {
+      Egg: 5,
+      Exp: -3,
+      Item: 12,
+      Teensy: -15,
+    },
+    Types: {
+      Bug: 4,
+      Water: 4,
+      Steel: 4,
+    },
+  },
+  CurryPowder: {
+    Flavors: {
+      Sweet: 4,
+      Salty: 4,
+      Sour: 4,
+      Bitter: 12,
+      Hot: 30,
+    },
+    Effects: {
+      Encounter: 12,
+      Teensy: 21,
+      Humungo: -3,
+    },
+    Types: {
+      Bug: 2,
+      Ghost: 2,
+      Steel: 2,
+      Fire: 2,
+      Water: 2,
+      Grass: 2,
+    },
+  },
+  Horseradish: {
+    Flavors: {
+      Sweet: 4,
+      Hot: 16,
+    },
+    Effects: {
+      Humungo: -3,
+      Teensy: 21,
+      Encounter: 12,
+    },
+    Types: {
+      Bug: 2,
+      Ghost: 2,
+      Steel: 2,
+      Fire: 2,
+      Water: 2,
+      Grass: 2,
+    },
+  },
+  Jam: {
+    Flavors: {
+      Sweet: 16,
+      Salty: 4,
+      Sour: 16,
+    },
+    Effects: {
+      Egg: 5,
+      Exp: -3,
+      Item: 12,
+      Teensy: -15,
+    },
+    Types: {
+      Electric: 4,
+      Ice: 4,
+      Dark: 4,
+    },
+  },
+  Ketchup: {
+    Flavors: {
+      Sweet: 8,
+      Salty: 16,
+      Sour: 16,
+    },
+    Effects: {
+      Egg: -3,
+      Exp: 12,
+      Raid: 21,
+    },
+    Types: {
+      Flying: 2,
+      Poison: 2,
+    },
+  },
+  Marmalade: {
+    Flavors: {
+      Sweet: 12,
+      Salty: 4,
+      Sour: 16,
+      Bitter: 20,
+    },
+    Effects: {
+      Egg: 5,
+      Exp: -3,
+      Item: 12,
+      Teensy: -15,
+    },
+    Types: {
+      Fighting: 4,
+      Poison: 4,
+      Rock: 4,
+    },
+  },
+  Mayonnaise: {
+    Flavors: {
+      Salty: 8,
+      Sour: 20,
+    },
+    Effects: {
+      Egg: -3,
+      Exp: 12,
+      Raid: 21,
+    },
+    Types: {
+      Normal: 2,
+      Fighting: 2,
+    },
+  },
+  Mustard: {
+    Flavors: {
+      Sweet: 4,
+      Salty: 8,
+      Sour: 8,
+      Bitter: 8,
+      Hot: 16,
+    },
+    Effects: {
+      Egg: -3,
+      Exp: 12,
+      Raid: 21,
+    },
+    Types: {
+      Ground: 2,
+      Rock: 2,
+    },
+  },
+  OliveOil: {
+    Flavors: {
+      Sour: 4,
+      Bitter: 4,
+    },
+    Effects: {
+      Egg: 5,
+      Exp: -3,
+      Item: 12,
+      Teensy: -15,
+    },
+    Types: {
+      Ghost: 4,
+      Fire: 4,
+      Grass: 4,
+    },
+  },
+  PeanutButter: {
+    Flavors: {
+      Sweet: 16,
+      Salty: 12,
+    },
+    Effects: {
+      Egg: -3,
+      Exp: 12,
+      Raid: 21,
+    },
+    Types: {
+      Steel: 2,
+      Fire: 2,
+    },
+  },
+  Pepper: {
+    Flavors: {
+      Salty: 4,
+      Bitter: 8,
+      Hot: 16,
+    },
+    Effects: {
+      Egg: -3,
+      Exp: 12,
+      Raid: 21,
+    },
+    Types: {
+      Ice: 2,
+      Dragon: 2,
+    },
+  },
+  Salt: {
+    Flavors: {
+      Salty: 20,
+      Bitter: 4,
+    },
+    Effects: {
+      Egg: -3,
+      Exp: 12,
+      Raid: 21,
+    },
+    Types: {
+      Electric: 2,
+      Psychic: 2,
+    },
+  },
+  Vinegar: {
+    Flavors: {
+      Sweet: 4,
+      Sour: 20,
+      Bitter: 4,
+    },
+    Effects: {
+      Egg: 5,
+      Exp: -3,
+      Item: 12,
+      Teensy: -15,
+    },
+    Types: {
+      Psychic: 4,
+      Dragon: 4,
+      Fairy: 4,
+    },
+  },
+  Wasabi: {
+    Flavors: {
+      Sweet: 4,
+      Salty: 4,
+      Hot: 20,
+    },
+    Effects: {
+      Humungo: -3,
+      Teensy: 21,
+      Encounter: 12,
+    },
+    Types: {
+      Electric: 2,
+      Psychic: 2,
+      Ice: 2,
+      Dragon: 2,
+      Dark: 2,
+      Fairy: 2,
+    },
+  },
+  WhippedCream: {
+    Flavors: {
+      Sweet: 20,
+    },
+    Effects: {
+      Egg: 5,
+      Exp: -3,
+      Item: 12,
+      Teensy: -15,
+    },
+    Types: {
+      Normal: 4,
+      Flying: 4,
+      Ground: 4,
+    },
+  },
+  Yogurt: {
+    Flavors: {
+      Sweet: 16,
+      Sour: 16,
+    },
+    Effects: {
+      Egg: -3,
+      Exp: 12,
+      Raid: 21,
+    },
+    Types: {
+      Dark: 2,
+      Fairy: 2,
+    },
+  },
+  BitterHerbaMystica: {
+    Flavors: {
+      Bitter: 500,
+    },
+    Effects: {
+      Title: 1000,
+      Sparkling: 1000,
+    },
+    Types: {
+      Normal: 250,
+      Fire: 250,
+      Water: 250,
+      Grass: 250,
+      Electric: 250,
+      Ice: 250,
+      Fighting: 250,
+      Poison: 250,
+      Ground: 250,
+      Flying: 250,
+      Psychic: 250,
+      Bug: 250,
+      Rock: 250,
+      Ghost: 250,
+      Dark: 250,
+      Steel: 250,
+      Dragon: 250,
+      Fairy: 250,
+    },
+  },
+  SpicyHerbaMystica: {
+    Flavors: {
+      Hot: 500,
+    },
+    Effects: {
+      Title: 1000,
+      Sparkling: 1000,
+    },
+    Types: {
+      Normal: 250,
+      Fire: 250,
+      Water: 250,
+      Grass: 250,
+      Electric: 250,
+      Ice: 250,
+      Fighting: 250,
+      Poison: 250,
+      Ground: 250,
+      Flying: 250,
+      Psychic: 250,
+      Bug: 250,
+      Rock: 250,
+      Ghost: 250,
+      Dark: 250,
+      Steel: 250,
+      Dragon: 250,
+      Fairy: 250,
+    },
+  },
+  SaltyHerbaMystica: {
+    Flavors: {
+      Salty: 500,
+    },
+    Effects: {
+      Title: 1000,
+      Sparkling: 1000,
+    },
+    Types: {
+      Normal: 250,
+      Fire: 250,
+      Water: 250,
+      Grass: 250,
+      Electric: 250,
+      Ice: 250,
+      Fighting: 250,
+      Poison: 250,
+      Ground: 250,
+      Flying: 250,
+      Psychic: 250,
+      Bug: 250,
+      Rock: 250,
+      Ghost: 250,
+      Dark: 250,
+      Steel: 250,
+      Dragon: 250,
+      Fairy: 250,
+    },
+  },
+  SourHerbaMystica: {
+    Flavors: {
+      Sour: 500,
+    },
+    Effects: {
+      Title: 1000,
+      Sparkling: 1000,
+    },
+    Types: {
+      Normal: 250,
+      Fire: 250,
+      Water: 250,
+      Grass: 250,
+      Electric: 250,
+      Ice: 250,
+      Fighting: 250,
+      Poison: 250,
+      Ground: 250,
+      Flying: 250,
+      Psychic: 250,
+      Bug: 250,
+      Rock: 250,
+      Ghost: 250,
+      Dark: 250,
+      Steel: 250,
+      Dragon: 250,
+      Fairy: 250,
+    },
+  },
+  SweetHerbaMystica: {
+    Flavors: {
+      Sweet: 500,
+    },
+    Effects: {
+      Title: 1000,
+      Sparkling: 1000,
+    },
+    Types: {
+      Normal: 250,
+      Fire: 250,
+      Water: 250,
+      Grass: 250,
+      Electric: 250,
+      Ice: 250,
+      Fighting: 250,
+      Poison: 250,
+      Ground: 250,
+      Flying: 250,
+      Psychic: 250,
+      Bug: 250,
+      Rock: 250,
+      Ghost: 250,
+      Dark: 250,
+      Steel: 250,
+      Dragon: 250,
+      Fairy: 250,
+    },
+  },
 };
 
 export const seasoningAttributes: Seasoning = {
