@@ -1,19 +1,15 @@
-import "./App.css";
-import { Box } from "@chakra-ui/react";
-import Ingredients from "./components/Ingredients";
-import Seasonings from "./components/Seasoning";
+import { Box } from '@chakra-ui/react';
+import Ingredients from './components/Ingredients';
+import './App.css';
 
-function App() {
+const App = () => {
   return (
     <Box>
-      <header className="App-header">
+      <header className='App-header'>
         <Ingredients />
-        {/* <Box mt="5">
-          <Seasonings />
-        </Box> */}
       </header>
     </Box>
   );
-}
+};
 
 export default App;

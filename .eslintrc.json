@@ -26,6 +26,13 @@
     "react/react-in-jsx-scope": ["off"],
     "react/jsx-uses-react": ["off"],
     "react/jsx-props-no-spreading": ["warn"],
-    "react/no-unescaped-entities": ["off"]
+    "react/no-unescaped-entities": ["off"],
+    "react/function-component-definition": ["off"],
+    "array-callback-return": ["off"],
+    "quotes": [2, "single"],
+    "prettier/prettier": [
+      "error",
+      { "singleQuote": true, "jsxSingleQuote": true }
+    ]
   }
 }

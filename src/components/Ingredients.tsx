@@ -6,20 +6,20 @@ import {
   Image,
   Stack,
   Text,
-} from "@chakra-ui/react";
-import { useState } from "react";
+} from '@chakra-ui/react';
+import React, { useState } from 'react';
 import {
   ingredietAttributes,
   seasoningAttributes,
-} from "../data/ingredientAttributes";
+} from '../data/ingredientAttributes';
 import {
   EffectInterface,
   FlavorInterface,
   TypeInterface,
-} from "../types/types";
-import { ingredientsList, seasoningsList } from "../data/ingredientLists";
+} from '../types/types';
+import { ingredientsList, seasoningsList } from '../data/ingredientLists';
 
-const Ingredients = () => {
+const Ingredients: React.FC = () => {
   const [selectedIngredients, setSelectedIngredients] = useState<string[]>([]);
   const [selectedSeasonings, setSelectedSeasonings] = useState<string[]>([]);
 
@@ -67,179 +67,175 @@ const Ingredients = () => {
   const handleIngredientClick = (name: string) => {
     if (selectedIngredients.includes(name)) {
       setSelectedIngredients(
-        selectedIngredients.filter((item) => item != name),
+        selectedIngredients.filter((item) => item !== name),
       );
 
       const updatedEffects: EffectInterface = {};
       const updatedFlavors: FlavorInterface = {};
       const updatedTypes: TypeInterface = {};
 
-      const attribute = ingredietAttributes[name.replaceAll(" ", "")];
+      const attribute = ingredietAttributes[name.replaceAll(' ', '')];
       const { Effects, Flavors, Types } = attribute;
 
-      for (const effect in Effects) {
-        const addVal = Effects[effect as keyof EffectInterface] || 0;
+      Object.keys(Effects).map((effect) => {
+        const subVal = Effects[effect as keyof EffectInterface] || 0;
         const preVal = effectsValue[effect as keyof EffectInterface] || 0;
 
-        updatedEffects[effect as keyof EffectInterface] = preVal - addVal;
+        updatedEffects[effect as keyof EffectInterface] = preVal - subVal;
 
         setEffectsValue({ ...effectsValue, ...updatedEffects });
-      }
+      });
 
-      for (const flavor in Flavors) {
+      Object.keys(Flavors).map((flavor) => {
         const subVal = Flavors[flavor as keyof FlavorInterface] || 0;
         const preVal = flavorsValue[flavor as keyof FlavorInterface] || 0;
 
         updatedFlavors[flavor as keyof FlavorInterface] = preVal - subVal;
 
         setFlavorsValue({ ...flavorsValue, ...updatedFlavors });
-      }
+      });
 
-      for (const type in Types) {
+      Object.keys(Types).map((type) => {
         const subVal = Types[type as keyof TypeInterface] || 0;
         const preVal = typesValue[type as keyof TypeInterface] || 0;
 
         updatedTypes[type as keyof TypeInterface] = preVal - subVal;
 
         setTypesValue({ ...typesValue, ...updatedTypes });
-      }
-    } else if (selectedIngredients && selectedIngredients.length === 6) {
-      return;
-    } else {
+      });
+    } else if (selectedIngredients && selectedIngredients.length <= 6) {
       setSelectedIngredients([...selectedIngredients, name]);
       const updatedEffects: EffectInterface = {};
       const updatedFlavors: FlavorInterface = {};
       const updatedTypes: TypeInterface = {};
 
-      const attribute = ingredietAttributes[name.replaceAll(" ", "")];
+      const attribute = ingredietAttributes[name.replaceAll(' ', '')];
       const { Effects, Flavors, Types } = attribute;
 
-      for (const effect in Effects) {
-        const subVal = Effects[effect as keyof EffectInterface] || 0;
+      Object.keys(Effects).map((effect) => {
+        const addVal = Effects[effect as keyof EffectInterface] || 0;
         const preVal = effectsValue[effect as keyof EffectInterface] || 0;
 
-        updatedEffects[effect as keyof EffectInterface] = preVal + subVal;
+        updatedEffects[effect as keyof EffectInterface] = preVal + addVal;
 
         setEffectsValue({ ...effectsValue, ...updatedEffects });
-      }
+      });
 
-      for (const flavor in Flavors) {
+      Object.keys(Flavors).map((flavor) => {
         const addVal = Flavors[flavor as keyof FlavorInterface] || 0;
         const preVal = flavorsValue[flavor as keyof FlavorInterface] || 0;
 
         updatedFlavors[flavor as keyof FlavorInterface] = preVal + addVal;
 
         setFlavorsValue({ ...flavorsValue, ...updatedFlavors });
-      }
+      });
 
-      for (const type in Types) {
+      Object.keys(Types).map((type) => {
         const addVal = Types[type as keyof TypeInterface] || 0;
         const preVal = typesValue[type as keyof TypeInterface] || 0;
 
         updatedTypes[type as keyof TypeInterface] = preVal + addVal;
 
         setTypesValue({ ...typesValue, ...updatedTypes });
-      }
+      });
     }
   };
 
   const handleSeasoningClick = (name: string) => {
     if (selectedSeasonings.includes(name)) {
-      setSelectedSeasonings(selectedSeasonings.filter((item) => item != name));
+      setSelectedSeasonings(selectedSeasonings.filter((item) => item !== name));
 
       const updatedEffects: EffectInterface = {};
       const updatedFlavors: FlavorInterface = {};
       const updatedTypes: TypeInterface = {};
 
-      const attribute = seasoningAttributes[name.replaceAll(" ", "")];
+      const attribute = seasoningAttributes[name.replaceAll(' ', '')];
       const { Effects, Flavors, Types } = attribute;
 
-      for (const effect in Effects) {
-        const addVal = Effects[effect as keyof EffectInterface] || 0;
+      Object.keys(Effects).map((effect) => {
+        const subVal = Effects[effect as keyof EffectInterface] || 0;
         const preVal = effectsValue[effect as keyof EffectInterface] || 0;
 
-        updatedEffects[effect as keyof EffectInterface] = preVal - addVal;
+        updatedEffects[effect as keyof EffectInterface] = preVal - subVal;
 
         setEffectsValue({ ...effectsValue, ...updatedEffects });
-      }
+      });
 
-      for (const flavor in Flavors) {
+      Object.keys(Flavors).map((flavor) => {
         const subVal = Flavors[flavor as keyof FlavorInterface] || 0;
         const preVal = flavorsValue[flavor as keyof FlavorInterface] || 0;
 
         updatedFlavors[flavor as keyof FlavorInterface] = preVal - subVal;
 
         setFlavorsValue({ ...flavorsValue, ...updatedFlavors });
-      }
+      });
 
-      for (const type in Types) {
+      Object.keys(Types).map((type) => {
         const subVal = Types[type as keyof TypeInterface] || 0;
         const preVal = typesValue[type as keyof TypeInterface] || 0;
 
         updatedTypes[type as keyof TypeInterface] = preVal - subVal;
 
         setTypesValue({ ...typesValue, ...updatedTypes });
-      }
-    } else if (selectedSeasonings && selectedSeasonings.length === 4) {
-      return;
-    } else {
+      });
+    } else if (selectedSeasonings && selectedSeasonings.length <= 4) {
       setSelectedSeasonings([...selectedSeasonings, name]);
 
       const updatedEffects: EffectInterface = {};
       const updatedFlavors: FlavorInterface = {};
       const updatedTypes: TypeInterface = {};
 
-      const attribute = seasoningAttributes[name.replaceAll(" ", "")];
+      const attribute = seasoningAttributes[name.replaceAll(' ', '')];
       const { Effects, Flavors, Types } = attribute;
 
-      for (const effect in Effects) {
-        const subVal = Effects[effect as keyof EffectInterface] || 0;
+      Object.keys(Effects).map((effect) => {
+        const addVal = Effects[effect as keyof EffectInterface] || 0;
         const preVal = effectsValue[effect as keyof EffectInterface] || 0;
 
-        updatedEffects[effect as keyof EffectInterface] = preVal + subVal;
+        updatedEffects[effect as keyof EffectInterface] = preVal + addVal;
 
         setEffectsValue({ ...effectsValue, ...updatedEffects });
-      }
+      });
 
-      for (const flavor in Flavors) {
+      Object.keys(Flavors).map((flavor) => {
         const addVal = Flavors[flavor as keyof FlavorInterface] || 0;
         const preVal = flavorsValue[flavor as keyof FlavorInterface] || 0;
 
         updatedFlavors[flavor as keyof FlavorInterface] = preVal + addVal;
 
         setFlavorsValue({ ...flavorsValue, ...updatedFlavors });
-      }
+      });
 
-      for (const type in Types) {
+      Object.keys(Types).map((type) => {
         const addVal = Types[type as keyof TypeInterface] || 0;
         const preVal = typesValue[type as keyof TypeInterface] || 0;
 
         updatedTypes[type as keyof TypeInterface] = preVal + addVal;
 
         setTypesValue({ ...typesValue, ...updatedTypes });
-      }
+      });
     }
   };
 
   return (
     <Box>
-      <Heading mb="5">Select up to 6 ingredients:</Heading>
+      <Heading mb='5'>Select up to 6 ingredients:</Heading>
       <Stack
         spacing={4}
-        direction="row"
-        align="center"
-        flexWrap="wrap"
-        justifyContent="space-between"
-        w="900px"
+        direction='row'
+        align='center'
+        flexWrap='wrap'
+        justifyContent='space-between'
+        w='900px'
       >
         {ingredientsList.map((name) => (
-          <Box key={name} my="2" ml="0 !important">
+          <Box key={name} my='2' ml='0 !important'>
             <Button onClick={() => handleIngredientClick(name)}>
-              <Text color="black">{name}</Text>
+              <Text color='black'>{name}</Text>
               <Image
                 src={`https://www.serebii.net/itemdex/sprites/${name
                   .toLowerCase()
-                  .replaceAll(" ", "")}.png`}
+                  .replaceAll(' ', '')}.png`}
                 alt={name}
               />
             </Button>
@@ -250,31 +246,31 @@ const Ingredients = () => {
       {selectedIngredients && (
         <Box>
           {selectedIngredients.map((ingredient) => (
-            <Text key={ingredient} fontSize="sm">
+            <Text key={ingredient} fontSize='sm'>
               {ingredient}
             </Text>
           ))}
         </Box>
       )}
 
-      <Box mt="5">
-        <Heading mb="5">Select up to 4 Seasonings:</Heading>
+      <Box mt='5'>
+        <Heading mb='5'>Select up to 4 Seasonings:</Heading>
         <Stack
           spacing={4}
-          direction="row"
-          align="center"
-          flexWrap="wrap"
-          justifyContent="space-between"
-          w="900px"
+          direction='row'
+          align='center'
+          flexWrap='wrap'
+          justifyContent='space-between'
+          w='900px'
         >
           {seasoningsList.map((name) => (
-            <Box key={name} my="2" ml="0 !important">
+            <Box key={name} my='2' ml='0 !important'>
               <Button onClick={() => handleSeasoningClick(name)}>
-                <Text color="black">{name}</Text>
+                <Text color='black'>{name}</Text>
                 <Image
                   src={`https://www.serebii.net/itemdex/sprites/${name
                     .toLowerCase()
-                    .replaceAll(" ", "")}.png`}
+                    .replaceAll(' ', '')}.png`}
                   alt={name}
                 />
               </Button>
@@ -285,7 +281,7 @@ const Ingredients = () => {
           {selectedSeasonings && (
             <Box>
               {selectedSeasonings.map((ingredient) => (
-                <Text key={ingredient} fontSize="sm">
+                <Text key={ingredient} fontSize='sm'>
                   {ingredient}
                 </Text>
               ))}
@@ -294,14 +290,14 @@ const Ingredients = () => {
         </Box>
       </Box>
 
-      <Box mt="5">
-        <Box mt="3">
-          <Heading fontSize="xl">Flavor value breakdown:</Heading>
+      <Box mt='5'>
+        <Box mt='3'>
+          <Heading fontSize='xl'>Flavor value breakdown:</Heading>
           {selectedIngredients && (
-            <Grid templateColumns="repeat(7, 1fr)" gap={6}>
+            <Grid templateColumns='repeat(7, 1fr)' gap={6}>
               {Object.keys(flavorsValue).map((key) => (
                 <Box key={key}>
-                  <Text fontSize="sm">
+                  <Text fontSize='sm'>
                     {key} : {flavorsValue[key as keyof FlavorInterface]}
                   </Text>
                 </Box>
@@ -309,13 +305,13 @@ const Ingredients = () => {
             </Grid>
           )}
         </Box>
-        <Box mt="3">
-          <Heading fontSize="xl">Effect value breakdown:</Heading>
+        <Box mt='3'>
+          <Heading fontSize='xl'>Effect value breakdown:</Heading>
           {selectedIngredients && (
-            <Grid templateColumns="repeat(7, 1fr)" gap={6}>
+            <Grid templateColumns='repeat(7, 1fr)' gap={6}>
               {Object.keys(effectsValue).map((key) => (
                 <Box key={key}>
-                  <Text fontSize="sm">
+                  <Text fontSize='sm'>
                     {key} : {effectsValue[key as keyof EffectInterface]}
                   </Text>
                 </Box>
@@ -323,16 +319,16 @@ const Ingredients = () => {
             </Grid>
           )}
         </Box>
-        <Box mt="3">
-          <Heading fontSize="xl">Type value breakdown:</Heading>
+        <Box mt='3'>
+          <Heading fontSize='xl'>Type value breakdown:</Heading>
           {selectedIngredients && (
-            <Grid templateColumns="repeat(7, 1fr)" gap={6}>
+            <Grid templateColumns='repeat(7, 1fr)' gap={6}>
               {Object.keys(typesValue).map((key) => (
-                <Box key={key} mt="2">
-                  <Text fontSize="sm">
+                <Box key={key} mt='2'>
+                  <Text fontSize='sm'>
                     <Image
                       src={`https://www.serebii.net/pokedex-bw/type/${key.toLowerCase()}.gif`}
-                    />{" "}
+                    />{' '}
                     : {typesValue[key as keyof TypeInterface]}
                   </Text>
                 </Box>

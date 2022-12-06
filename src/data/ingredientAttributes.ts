@@ -1,4 +1,4 @@
-import { Ingredient, Seasoning } from "../types/types";
+import { Ingredient, Seasoning } from '../types/types';
 
 export const ingredietAttributes: Ingredient = {
   Apple: {
